@@ -17,3 +17,5 @@
 2. Note:
 
 - CORS: -> install package middleware "cors" and import in file server.js
+
+Project dev by ThaiHuynh
