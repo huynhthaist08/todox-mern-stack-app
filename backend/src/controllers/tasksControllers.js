@@ -2,10 +2,46 @@ import Task from "../models/Task.js";
 
 // GET ALL
 export const getAllTasks = async (req, res) => {
+    // Xử lý filter trong DateTimeFilter
+    const { filter = "today" } = req.query;
+    const now = new Date();
+    let startDate;
+
+    switch (filter) {
+        case "today": {
+            startDate = new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate(),
+            );
+            break;
+        }
+        case "week": {
+            const mondayDate =
+                now.getDate() -
+                (now.getDay() - 1) -
+                (now.getDay() === 0 ? 7 : 0);
+            startDate = new Date(now.getFullYear(), now.getMonth(), mondayDate);
+            break;
+        }
+        case "month": {
+            startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+            break;
+        }
+        case "all":
+        default: {
+            startDate = null;
+        }
+    }
+
+    const query = startDate ? { createdAt: { $gte: startDate } } : {};
+
     try {
         // const tasks = await Task.find().sort({ createdAt: -1 }); // -1: sắp xếp giảm dần <=> desc: giảm dần, asc: tăng dần
 
         const result = await Task.aggregate([
+            // pipelines:
+            { $match: query },
             {
                 $facet: {
                     // facet -> chạy 3 pipelines này cùng lúc -> kết quả của 3 bước này sẽ trả về chung 1 đối tượng

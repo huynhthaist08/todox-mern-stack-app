@@ -20,6 +20,10 @@ const Footer = ({ completedTasksCount = 0, activeTasksCount = 0 }) => {
                     </p>
                 </div>
             )}
+
+            <div className="mt-20 text-sm text-center">
+                <p>TodoX MERN App • Designed for productivity by ThaiHuynh</p>
+            </div>
         </>
     );
 };

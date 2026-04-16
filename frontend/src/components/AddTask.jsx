@@ -17,7 +17,7 @@ const AddTask = ({ handleNewTaskAdded }) => {
                 toast.success(`Nhiệm vụ ${newTaskTitle} đã được thêm vào`);
                 handleNewTaskAdded();
             } catch (error) {
-                console.log("Lỗi xảy ra khi thêm nhiệm vụ", error);
+                console.error("Lỗi xảy ra khi thêm nhiệm vụ", error);
                 toast.error("Lỗi xảy ra khi thêm nhiệm vụ mới");
             }
 
