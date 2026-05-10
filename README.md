@@ -1,0 +1,3 @@
+A full-featured task management application built using the MERN stack. The project implements secure user authentication, personalized task dashboards, and full CRUD functionality. It demonstrates proficiency in database schema design with MongoDB and seamless state synchronization between the React frontend and Express backend.
+
+Tech stack: JavaScript, Nodejs, Express, MongoDB, React, TailwindCSS, and other libs/frameworks...
